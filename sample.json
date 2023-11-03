@@ -55,7 +55,7 @@
 				"exec": [
 					"// Test the response code",
 					"pm.test(\"Assert true\", () => {",
-					"  pm.expect(pm.response).to.be.ok;",
+					"  pm.expect(pm.response).to.be.NaN;",
 					"  // pm.response.to.be.ok;",
 					"});"
 				]
