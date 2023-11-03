@@ -12,8 +12,14 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"// Test the response code",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
 							"",
-							""
+							"pm.test(\"Timeout is 3sec\", () => {",
+							"  pm.expect(pm.response.json().delay).to.contain(\"3\");",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -54,9 +60,12 @@
 				"type": "text/javascript",
 				"exec": [
 					"// Test the response code",
-					"pm.test(\"Assert true\", () => {",
-					"  pm.expect(pm.response).to.be.NaN;",
-					"  // pm.response.to.be.ok;",
+					"pm.test(\"Assert true 1\", () => {",
+					"  pm.expect(pm.response).to.exist;",
+					"});",
+					"",
+					"pm.test(\"Assert true 2\", () => {",
+					"  pm.response.test;",
 					"});"
 				]
 			}
