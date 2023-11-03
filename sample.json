@@ -33,7 +33,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://postman-echo.com/delay/3",
+					"raw": "https://postman-echo.com/delay/{{seconds}}",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
@@ -41,11 +41,38 @@
 					],
 					"path": [
 						"delay",
-						"3"
+						"{{seconds}}"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "seconds",
+			"value": "3",
+			"type": "default"
 		}
 	]
 }
