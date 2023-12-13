@@ -13,14 +13,23 @@
 					"script": {
 						"exec": [
 							"let responseData = pm.response.json();",
+							"let token = responseData.headers[\"postman-token\"];",
 							"",
-							"pm.test(\"HTTP status 200\", () =>{",
+							"pm.test(\"Positive: HTTP status 200\", () =>{",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Postman token not null\", () =>{",
-							"    let token = responseData.headers[\"postman-token\"];",
+							"pm.test(\"Negative: HTTP status 500\", () =>{",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"",
+							"pm.test(\"Positive: Postman token not null\", () =>{ ",
 							"    pm.expect(token).to.be.not.null;",
+							"});",
+							"",
+							"pm.test(\"Negative: Accept encoding is null\", () =>{",
+							"    let token = responseData.headers[\"accept-encoding\"];",
+							"    pm.expect(token).to.be.null;",
 							"});"
 						],
 						"type": "text/javascript"
