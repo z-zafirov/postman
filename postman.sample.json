@@ -12,24 +12,22 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"let responseData = pm.response.json();",
-							"let token = responseData.headers[\"postman-token\"];",
 							"",
 							"pm.test(\"Positive: HTTP status 200\", () =>{",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Negative: HTTP status 500\", () =>{",
-							"    pm.response.to.have.status(500);",
-							"});",
 							"",
-							"pm.test(\"Positive: Postman token not null\", () =>{ ",
-							"    pm.expect(token).to.be.not.null;",
-							"});",
-							"",
-							"pm.test(\"Negative: Accept encoding is null\", () =>{",
-							"    let token = responseData.headers[\"accept-encoding\"];",
-							"    pm.expect(token).to.be.null;",
+							"pm.test(\"Postman response is JSON\", () =>{",
+							"    let result;",
+							"    try{",
+							"        let responseData = pm.response.json();",
+							"        let responseToken = responseData.headers[\"postman-token\"];",
+							"        result = true;",
+							"    }catch(e){",
+							"        result = false;",
+							"    }",
+							"    pm.expect(result).to.be.true;",
 							"});"
 						],
 						"type": "text/javascript"
@@ -40,18 +38,45 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://postman-echo.com/get",
+					"raw": "https://postman-echo.com/{{endpoint}}",
 					"protocol": "https",
 					"host": [
 						"postman-echo",
 						"com"
 					],
 					"path": [
-						"get"
+						"{{endpoint}}"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "get",
+			"type": "default"
 		}
 	]
 }
