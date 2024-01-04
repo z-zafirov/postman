@@ -75,7 +75,7 @@
 	"variable": [
 		{
 			"key": "endpoint",
-			"value": "get",
+			"value": "",
 			"type": "default"
 		}
 	]
