@@ -75,7 +75,7 @@
 	"variable": [
 		{
 			"key": "endpoint",
-			"value": "",
+			"value": ${{ input.endpoint }},
 			"type": "default"
 		}
 	]
